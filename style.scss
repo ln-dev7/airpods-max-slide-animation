@@ -1,0 +1,226 @@
+@import url("https://fonts.cdnfonts.com/css/helvetica-neue-55");
+
+:root {
+  font-family: "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+
+  color: #1d1d1f;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #fff;
+  overflow: hidden;
+}
+
+.main {
+  position: relative;
+  //overflow: hidden;
+  background-color: #f5f5f5;
+  width: 1280px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  //justify-content: flex-end;
+  justify-content: space-between;
+  padding: 2rem 6rem 6rem 2rem;
+
+  .images {
+    //width: calc(100% - 550px);
+    width: 100%;
+    height: 650px;
+    //position: absolute;
+    position: relative;
+    transform-origin: 0 50%;
+    transition: 5s;
+    left: 0;
+    img {
+      position: absolute;
+      z-index: 3;
+      transition: .5s;
+    }
+    .image-1 {
+      width: 200px;
+      top: -10px;
+      left: -150px;
+      transform: rotate(28deg);
+    }
+    .image-2 {
+      width: 700px;
+      top: 50%;
+      transform: translateY(calc(-50% + 50px));
+    }
+    .image-3 {
+      width: 200px;
+      bottom: -70px;
+      left: -150px;
+      transform: rotate(120deg);
+    }
+  }
+
+  .details {
+    width: 400px;
+    flex-shrink: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    &-title {
+      color: #bf4800;
+    }
+    h2 {
+      width: 280px;
+      font-size: 46.46px;
+      font-weight: bold;
+      line-height: 56.784px;
+    }
+    .price {
+      border-radius: 8px;
+      background: #fff;
+      display: flex;
+      padding: 14px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      .line {
+        width: 100%;
+        height: 0.5px;
+        background: #d2d2d7;
+        margin: 4px 0;
+      }
+      h4 {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 10px;
+        margin-top: 4px;
+      }
+      p {
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 14px;
+      }
+    }
+    .colors {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .color {
+        cursor: pointer;
+        position: relative;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: #fff;
+        padding: 1rem 1rem 2rem 1rem;
+        span {
+          display: block;
+          margin-top: 12px;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 14px;
+        }
+        img,
+        span {
+          z-index: 2;
+        }
+        &-cursor {
+          position: absolute;
+          bottom: 10px;
+          border-radius: 10px;
+          background: #f5f5f5;
+          //background: red;
+          height: 10px;
+          width: 85%;
+          z-index: 1;
+          transition: 0.5s;
+        }
+        &.active {
+          .color-cursor {
+            height: 200px;
+          }
+        }
+      }
+    }
+  }
+
+  .navigation {
+    z-index: 3;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -25px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    button {
+      cursor: pointer;
+      border: none;
+      width: 55px;
+      height: 55px;
+      background: #0071e3;
+      border-radius: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transition: 0.5s;
+      svg {
+        flex-shrink: 0;
+        display: block;
+        transition: 0.5s;
+      }
+
+      &:hover {
+        transform: scale(0.9);
+
+        svg {
+          transform: scale(1.5);
+        }
+      }
+    }
+  }
+
+  .title {
+    position: absolute;
+    width: 100%;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    svg {
+      width: 100%;
+    }
+  }
+}
