@@ -34,34 +34,31 @@ const transformObjects = [
 ]; 
 
 function animation(current){
-
   const order = this.classList.contains('next') ? nextOrder : prevOrder;
-  
   for(let j = 0 ; j < 3 ; j++){
-      console.log(`.image-${order[current-1][j]}` , ' : ' , transformObjects[j]);
       const img = document.querySelector(`.image-${order[current-1][j]}`);
       gsap.to(img , transformObjects[j]);
   }
 }
 
 let current = 0;
-nextBtn.addEventListener("click", () => {
 
+nextBtn.addEventListener("click", () => {
   current++;
   if(current > 3 ){
     current = 1;
   }
   animation.call(nextBtn , current);
-
 });
 
 prevBtn.addEventListener("click", () => {
   current--;
   if(current < 0 ){
-    current = 1;
+    current = 2;
+  }else if(current === 0){
+    current = 3;
   }
   animation.call(nextBtn , current);
-
 });
 
 nextBtn.addEventListener("click", () => {
