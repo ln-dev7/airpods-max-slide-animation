@@ -45,25 +45,23 @@ function animation(current){
 }
 
 let current = 0;
-
 nextBtn.addEventListener("click", () => {
-  current++;
-    
-  
 
-  if(current > 3){
-    current = 0;
-  }else{
-    animation.call(nextBtn , current);
+  current++;
+  if(current > 3 ){
+    current = 1;
   }
-  
+  animation.call(nextBtn , current);
+
 });
 
 prevBtn.addEventListener("click", () => {
-  if (current > 0) {
-    current--;
-    animation.call(prevBtn , current);
+  current--;
+  if(current < 0 ){
+    current = 1;
   }
+  animation.call(nextBtn , current);
+
 });
 
 nextBtn.addEventListener("click", () => {
