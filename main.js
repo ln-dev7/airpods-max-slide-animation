@@ -8,171 +8,58 @@ const images = document.querySelector(".images");
 const imagesContainer = document.querySelector(".images-container");
 const allImages = document.querySelectorAll(".images img");
 
-const img1 = document.querySelector(".image-1");
-const img2 = document.querySelector(".image-2");
-const img3 = document.querySelector(".image-3");
+const nextOrder = [[1 , 2 , 3] , [3 , 1 , 2] , [2 , 3 , 1]];
+const prevOrder = [[2 , 3 , 1] , [1 , 2 , 3] , [3 , 1 , 2]];
+const transformObjects = [
+    {
+        width: "700px",
+        top: "-20px",
+        left: "100px",
+        transform: "rotate(0deg)"
+    },
 
-let current = 1;
+    {
+        width: "250px",
+        top: "500px",
+        left: "-80px",
+        transform: "rotate(120deg)"
+    },
+
+    {
+        width: "250px",
+        top: "-100px",
+        left: "-80px",
+        transform: "rotate(28deg)"
+    }
+]; 
+
+function animation(current){
+  const order = this.classList.contains('next') ? nextOrder : prevOrder;
+  for(let j = 0 ; j < 3 ; j++){
+      const img = document.querySelector(`.image-${order[current-1][j]}`);
+      gsap.to(img , transformObjects[j]);
+  }
+}
+
+let current = 0;
 
 nextBtn.addEventListener("click", () => {
-  if (current < 4) {
-    current++;
-    switch (current) {
-      case 1:
-        break;
-      case 2:
-        gsap.to(img1, {
-          width: "700px",
-          top: "-20px",
-          left: "100px",
-          transform: "rotate(0deg)",
-          //duration: .75,
-        });
-        gsap.to(img2, {
-          width: "250px",
-          top: "500px",
-          left: "-80px",
-          transform: "rotate(120deg)",
-          //duration: .75,
-        });
-        gsap.to(img3, {
-          width: "250px",
-          top: "-100px",
-          left: "-80px",
-          transform: "rotate(28deg)",
-          //duration: .75,
-        });
-        break;
-      case 3:
-        gsap.to(img3, {
-          width: "700px",
-          top: "-20px",
-          left: "100px",
-          transform: "rotate(0deg)",
-          //duration: .75,
-        });
-        gsap.to(img1, {
-          width: "250px",
-          top: "500px",
-          left: "-80px",
-          transform: "rotate(120deg)",
-          //duration: .75,
-        });
-        gsap.to(img2, {
-          width: "250px",
-          top: "-100px",
-          left: "-80px",
-          transform: "rotate(28deg)",
-          //duration: .75,
-        });
-        break;
-      default:
-        gsap.to(img2, {
-          width: "700px",
-          top: "-20px",
-          left: "100px",
-          transform: "rotate(0deg)",
-          //duration: .75,
-        });
-        gsap.to(img3, {
-          width: "250px",
-          top: "500px",
-          left: "-80px",
-          transform: "rotate(120deg)",
-          //duration: .75,
-        });
-        gsap.to(img1, {
-          width: "250px",
-          top: "-100px",
-          left: "-80px",
-          transform: "rotate(28deg)",
-          //duration: .75,
-        });
-        break;
-    }
+  current++;
+  if(current > 3 ){
+    current = 1;
   }
+  animation.call(nextBtn , current);
 });
 
 prevBtn.addEventListener("click", () => {
-  if (current > 1) {
-    current--;
-    switch (current) {
-      case 1:
-        gsap.to(img2, {
-          width: "700px",
-          top: "-20px",
-          left: "100px",
-          transform: "rotate(0deg)",
-          //duration: .75,
-        });
-        gsap.to(img3, {
-          width: "250px",
-          top: "500px",
-          left: "-80px",
-          transform: "rotate(120deg)",
-          //duration: .75,
-        });
-        gsap.to(img1, {
-          width: "250px",
-          top: "-100px",
-          left: "-80px",
-          transform: "rotate(28deg)",
-          //duration: .75,
-        });
-        break;
-      case 2:
-        gsap.to(img1, {
-          width: "700px",
-          top: "-20px",
-          left: "100px",
-          transform: "rotate(0deg)",
-          //duration: .75,
-        });
-        gsap.to(img2, {
-          width: "250px",
-          top: "500px",
-          left: "-80px",
-          transform: "rotate(120deg)",
-          //duration: .75,
-        });
-        gsap.to(img3, {
-          width: "250px",
-          top: "-100px",
-          left: "-80px",
-          transform: "rotate(28deg)",
-          //duration: .75,
-        });
-        break;
-      case 3:
-        gsap.to(img3, {
-          width: "700px",
-          top: "-20px",
-          left: "100px",
-          transform: "rotate(0deg)",
-          //duration: .75,
-        });
-        gsap.to(img1, {
-          width: "250px",
-          top: "500px",
-          left: "-80px",
-          transform: "rotate(120deg)",
-          //duration: .75,
-        });
-        gsap.to(img2, {
-          width: "250px",
-          top: "-100px",
-          left: "-80px",
-          transform: "rotate(28deg)",
-          //duration: .75,
-        });
-        break;
-      default:
-        break;
-    }
+  current--;
+  if(current < 0 ){
+    current = 2;
+  }else if(current === 0){
+    current = 3;
   }
+  animation.call(nextBtn , current);
 });
-
-//
 
 nextBtn.addEventListener("click", () => {
   const activeColor = document.querySelector(".color.active");
