@@ -1,18 +1,42 @@
-@import url("https://fonts.cdnfonts.com/css/helvetica-neue-55");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+$font-primary: "Inter", sans-serif;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$line-height-tight: 1.1;
+$line-height-normal: 1.4;
+$letter-spacing-tight: -0.02em;
+$letter-spacing-normal: 0;
+$color-text-primary: #1d1d1f;
+$color-text-secondary: #515154;
+$color-background-primary: #fff;
+$color-background-secondary: #f5f5f5;
+$color-accent: #0071e3;
+$color-title: #bf4800;
+$color-divider: #d2d2d766;
+$border-radius-standard: 8px;
+$border-radius-large: 16px;
+$border-radius-round: 55px;
+$transition-standard: 0.5s;
+$z-index-base: 1;
+$z-index-content: 2;
+$z-index-foreground: 3;
 
 :root {
-  font-family: "Helvetica Neue", sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: $font-primary;
+  line-height: $line-height-normal;
+  font-weight: $font-weight-regular;
   color-scheme: light dark;
-
-  color: #1d1d1f;
-
+  color: $color-text-primary;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  letter-spacing: $letter-spacing-tight;
 }
 
 *,
@@ -29,50 +53,54 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #fff;
+  background: $color-background-primary;
   overflow: hidden;
 }
 
 .main {
   position: relative;
-  //overflow: hidden;
-  background-color: #f5f5f5;
+  background-color: $color-background-secondary;
   width: 1280px;
   max-width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  //justify-content: flex-end;
   justify-content: space-between;
   padding: 2rem 6rem 6rem 2rem;
+  border-radius: $border-radius-large;
 
   .images {
     width: 100%;
     height: 650px;
     position: relative;
     left: 0;
-    &-container{
+
+    &-container {
       position: absolute;
       left: 0;
       width: 100%;
       height: 100%;
     }
+
     img {
       position: absolute;
-      z-index: 3;
+      z-index: $z-index-foreground;
     }
+
     .image-1 {
       width: 250px;
       top: -100px;
       left: -80px;
       transform: rotate(28deg);
     }
+
     .image-2 {
       width: 700px;
       top: -20px;
       left: 100px;
       transform: rotate(0deg);
     }
+
     .image-3 {
       width: 250px;
       top: 500px;
@@ -84,53 +112,95 @@
   .details {
     width: 400px;
     flex-shrink: 0;
-    z-index: 3;
+    z-index: $z-index-foreground;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
+
     &-title {
-      color: #bf4800;
+      color: $color-title;
+      font-weight: $font-weight-medium;
+      letter-spacing: $letter-spacing-tight;
     }
+
+    .product-title {
+      font-size: 46px;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-tight;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+
+      .product-name,
+      .product-model {
+        display: inline-block;
+        transition: transform 0.5s ease, opacity 0.4s ease;
+      }
+
+      &.changing {
+        .product-name,
+        .product-model {
+          transform: translateY(-10px);
+          opacity: 0;
+        }
+      }
+    }
+
     h2 {
-      width: 280px;
-      font-size: 46.46px;
-      font-weight: bold;
-      line-height: 56.784px;
+      font-size: 32px;
+      font-weight: $font-weight-semibold;
+      line-height: $line-height-tight;
+      letter-spacing: -0.01em;
     }
+
     .price {
-      border-radius: 8px;
-      background: #fff;
+      border-radius: $border-radius-standard;
+      background: $color-background-primary;
       display: flex;
       padding: 14px;
       flex-direction: column;
       align-items: flex-start;
       gap: 6px;
+
+      .product-price {
+        transition: transform 0.5s ease, opacity 0.4s ease;
+
+        &.changing {
+          transform: translateY(-10px);
+          opacity: 0;
+        }
+      }
+
       .line {
         width: 100%;
         height: 0.5px;
-        background: #d2d2d7;
+        background: $color-divider;
         margin: 4px 0;
       }
+
       h4 {
         font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 10px;
+        font-weight: $font-weight-medium;
+        line-height: 16px;
         margin-top: 4px;
+        letter-spacing: $letter-spacing-normal;
       }
+
       p {
         font-size: 10px;
-        font-style: normal;
-        font-weight: 400;
+        font-weight: $font-weight-regular;
         line-height: 14px;
+        color: $color-text-secondary;
+        letter-spacing: $letter-spacing-normal;
       }
     }
+
     .colors {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       .color {
         cursor: pointer;
         position: relative;
@@ -139,32 +209,35 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        border-radius: 8px;
-        background: #fff;
+        border-radius: $border-radius-standard;
+        background: $color-background-primary;
         padding: 1rem 1rem 2rem 1rem;
+
         span {
           display: block;
           margin-top: 12px;
           font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 14px;
+          font-weight: $font-weight-medium;
+          line-height: 16px;
+          letter-spacing: $letter-spacing-normal;
         }
+
         img,
         span {
-          z-index: 2;
+          z-index: $z-index-content;
         }
+
         &-cursor {
           position: absolute;
           bottom: 10px;
           border-radius: 10px;
-          background: #f5f5f5;
-          //background: red;
+          background: $color-background-secondary;
           height: 10px;
           width: 85%;
-          z-index: 1;
-          transition: 0.5s;
+          z-index: $z-index-base;
+          transition: $transition-standard;
         }
+
         &.active {
           .color-cursor {
             height: 200px;
@@ -175,7 +248,7 @@
   }
 
   .navigation {
-    z-index: 3;
+    z-index: $z-index-foreground;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -183,22 +256,24 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+
     button {
       cursor: pointer;
       border: none;
       width: 55px;
       height: 55px;
-      background: #0071e3;
-      border-radius: 55px;
+      background: $color-accent;
+      border-radius: $border-radius-round;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      transition: 0.5s;
+      transition: $transition-standard;
+
       svg {
         flex-shrink: 0;
         display: block;
-        transition: 0.5s;
+        transition: $transition-standard;
       }
 
       &:hover {
@@ -220,7 +295,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: $z-index-content;
+
     svg {
       width: 100%;
     }
